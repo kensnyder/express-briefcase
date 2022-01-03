@@ -1,0 +1,14 @@
+# General files
+.DS_Store
+!.gitkeep
+node_modules
+# env
+.env
+# Editors
+.idea
+.vscode
+# Build directories
+bw-front/build/
+bw-front/dist/
+bw-back/dist/
+bw-back/worker/

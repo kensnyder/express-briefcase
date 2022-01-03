@@ -1,0 +1,18 @@
+{
+  "name": "express-briefcase",
+  "version": "4.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.x"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}
