@@ -1,4 +1,4 @@
-# express-briefcase
+# 💼 express-briefcase
 
 [![Build Status](https://travis-ci.com/kensnyder/express-briefcase.svg?branch=master&v=1.0.0)](https://travis-ci.com/kensnyder/express-briefcase)
 [![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=1.0.0)](https://codecov.io/gh/kensnyder/express-briefcase)
@@ -226,7 +226,7 @@ Resulting response JSON
     "perPage": 25,
     "page": 2,
     "total": 104,
-    "numPages": 4,
+    "numPages": 5,
     "hasNextPage": true,
     "prev": "/users/search?name=John&page=1",
     "next": "/users/search?name=John&page=3"
