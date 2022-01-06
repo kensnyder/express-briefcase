@@ -1,10 +1,11 @@
 {
   "name": "express-briefcase",
   "version": "4.0.0",
-  "description": "",
+  "description": "Include metadata in Express.js response json such as errors, warnings and pagination",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx jest",
+    "coverage": "npx jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,8 @@
     "express": "4.x"
   },
   "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
     "jest": "^27.4.7",
     "prettier": "^2.5.1"
   }

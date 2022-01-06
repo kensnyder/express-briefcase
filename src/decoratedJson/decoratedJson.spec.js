@@ -1,6 +1,6 @@
 const decoratedJson = require('./decoratedJson.js');
 
-fdescribe('res.decoratedJson()', () => {
+describe('res.decoratedJson()', () => {
   let res, json;
   beforeEach(() => {
     json = jest.fn();
@@ -19,7 +19,7 @@ fdescribe('res.decoratedJson()', () => {
   });
   it('should properly handle basic data', () => {
     res.decoratedJson({ foo: 'bar' });
-    expect(json.mock.calls[0][0].took).toBeCloseTo(400, 2);
+    expect(json.mock.calls[0][0].took).toBeCloseTo(400, -2);
     expect(json.mock.calls[0][0].status).toBe(200);
     expect(json.mock.calls[0][0].statusClass).toBe('2xx');
     expect(json.mock.calls[0][0].success).toBe(true);
@@ -28,6 +28,22 @@ fdescribe('res.decoratedJson()', () => {
     expect(json.mock.calls[0][0].new).toEqual({ id: 1 });
     expect(json.mock.calls[0][0].pagination).toEqual({});
     expect(json.mock.calls[0][0].payload).toEqual({ foo: 'bar' });
+  });
+  it('should properly handle error status', () => {
+    res.statusCode = 403;
+    res.decoratedJson({ foo: 'bar' });
+    expect(json.mock.calls[0][0].status).toBe(403);
+    expect(json.mock.calls[0][0].statusClass).toBe('4xx');
+    expect(json.mock.calls[0][0].success).toBe(false);
+  });
+  it('should properly default payload to null', () => {
+    res.decoratedJson();
+    expect(json.mock.calls[0][0].payload).toBe(null);
+  });
+  it('should properly handle when _startedAt is falsy', () => {
+    res.locals._startedAt = undefined;
+    res.decoratedJson({ foo: 'bar' });
+    expect(json.mock.calls[0][0].took).toBe(undefined);
   });
   it('should handle a customizer that changes by reference', () => {
     res.locals._customizer = function (shell) {

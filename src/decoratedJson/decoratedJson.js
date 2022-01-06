@@ -1,3 +1,7 @@
+/**
+ *
+ * @param data
+ */
 function decoratedJson(data = null) {
   const status = this.statusCode;
   const took = this.locals._startedAt ? new Date() - this.locals._startedAt : 0;

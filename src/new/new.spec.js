@@ -1,6 +1,6 @@
 const newRecord = require('./new.js');
 
-fdescribe('res.new()', () => {
+describe('res.new()', () => {
   let res, status;
   beforeEach(() => {
     status = jest.fn();

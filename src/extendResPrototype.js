@@ -8,9 +8,13 @@ const {
   ServerResponse: { prototype: resPrototype },
 } = require('http');
 
-resPrototype.decoratedJson = decoratedJson;
-resPrototype.error = error;
-resPrototype.devError = devError;
-resPrototype.warn = warn;
-resPrototype.new = newRecord;
-resPrototype.total = total;
+function extendResPrototype() {
+  resPrototype.decoratedJson = decoratedJson;
+  resPrototype.error = error;
+  resPrototype.devError = devError;
+  resPrototype.warn = warn;
+  resPrototype.new = newRecord;
+  resPrototype.total = total;
+}
+
+module.exports = extendResPrototype;

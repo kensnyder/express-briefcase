@@ -1,6 +1,6 @@
 const warn = require('./warn.js');
 
-fdescribe('res.warn()', () => {
+describe('res.warn()', () => {
   let res;
   beforeEach(() => {
     res = {

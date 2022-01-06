@@ -4,7 +4,7 @@
 [![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=1.0.0)](https://codecov.io/gh/kensnyder/express-briefcase)
 [![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=1.0.0)](https://opensource.org/licenses/ISC)
 
-Include metadata in response json such as errors, warnings and pagination
+Include metadata in Express.js response json such as errors, warnings and pagination
 
 ## Installation
 

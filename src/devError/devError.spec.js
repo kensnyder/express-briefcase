@@ -1,7 +1,7 @@
 const devError = require('./devError.js');
 const error = require('../error/error.js');
 
-fdescribe('res.devError()', () => {
+describe('res.devError()', () => {
   let res;
   beforeEach(() => {
     res = {

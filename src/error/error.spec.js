@@ -1,6 +1,6 @@
 const error = require('./error.js');
 
-fdescribe('res.error()', () => {
+describe('res.error()', () => {
   let res;
   beforeEach(() => {
     res = {

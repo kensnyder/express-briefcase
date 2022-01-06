@@ -1,6 +1,6 @@
 const total = require('./total.js');
 
-fdescribe('res.total()', () => {
+describe('res.total()', () => {
   let links, res;
   beforeEach(() => {
     links = jest.fn();
@@ -70,5 +70,23 @@ fdescribe('res.total()', () => {
       hasNextPage: true,
     });
     expect(links).not.toHaveBeenCalled();
+  });
+  it('should fallback to limit 10 and page 1', () => {
+    res.req.query = {};
+    res.req.body = {};
+    res.total({ total: 99 });
+    expect(res.locals._pagination).toEqual({
+      perPage: 10,
+      page: 1,
+      total: 99,
+      numPages: 10,
+      hasNextPage: true,
+      prev: null,
+      next: '/search?page=2',
+    });
+    expect(links).toHaveBeenCalledWith({
+      prev: null,
+      next: '/search?page=2',
+    });
   });
 });

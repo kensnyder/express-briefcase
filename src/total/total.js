@@ -1,6 +1,6 @@
 function total({ total, perPage = undefined, page = undefined }) {
   if (perPage === undefined) {
-    perPage = parseInt(this.req.query.limit || this.req.body.limit) || 25;
+    perPage = parseInt(this.req.query.limit || this.req.body.limit) || 10;
   }
   if (page === undefined) {
     page = parseInt(this.req.query.page || this.req.body.page) || 1;
