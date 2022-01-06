@@ -226,6 +226,7 @@ Resulting response JSON
     "perPage": 25,
     "page": 2,
     "total": 104,
+    "numPages": 4,
     "hasNextPage": true,
     "prev": "/users/search?name=John&page=1",
     "next": "/users/search?name=John&page=3"

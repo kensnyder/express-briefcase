@@ -10,14 +10,14 @@ require('./src/extendResPrototype.js');
 function briefcase(customizer = null) {
   return function (req, res, next) {
     // note the time we started
-    res.startedAt = new Date();
+    res.locals._startedAt = new Date();
     // setup empty fields
-    res._errors = [];
-    res._warnings = [];
-    res._new = null;
-    res._pagination = null;
+    res.locals._errors = [];
+    res.locals._warnings = [];
+    res.locals._new = null;
+    res.locals._pagination = null;
     // note the function (if any) for customizing briefcase
-    res._customizer = customizer;
+    res.locals._customizer = customizer;
     // proceed to next middleware
     next();
   };

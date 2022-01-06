@@ -1,20 +1,20 @@
 function decoratedJson(data = null) {
   const status = this.statusCode;
-  const took = new Date() - this.startedAt;
+  const took = this.locals._startedAt ? new Date() - this.locals._startedAt : 0;
   let shell = {
     date: new Date(),
     took: took > 0 ? took : undefined,
     status,
     statusClass: String(status).slice(0, 1) + 'xx',
     success: status < 400,
-    errors: this._errors,
-    warnings: this._warnings,
-    new: this._new,
-    pagination: this._pagination,
+    errors: this.locals._errors,
+    warnings: this.locals._warnings,
+    new: this.locals._new,
+    pagination: this.locals._pagination,
     payload: data,
   };
-  if (this._customizer) {
-    shell = this._customizer.call(this, shell);
+  if (this.locals._customizer) {
+    shell = this.locals._customizer.call(this, shell);
   }
   this.json(shell);
 }

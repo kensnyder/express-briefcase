@@ -10,7 +10,7 @@ function total({ total, perPage = undefined, page = undefined }) {
   const prev = page === 1 ? null : _buildPageLink(this.req, page - 1);
   const next = hasNextPage ? _buildPageLink(this.req, page + 1) : null;
   // for endpoints with pagination
-  this._pagination = {
+  this.locals._pagination = {
     perPage, // number of records per page
     page, // the current page
     total, // total number of records
@@ -31,7 +31,7 @@ function _buildPageLink(req, forPage) {
     params.sort();
     queryString = '?' + params.toString();
   }
-  return `${req.protocol}://${req.hostname}${req.path}${queryString}`;
+  return req.path + queryString;
 }
 
 // make our helper function unit testable
