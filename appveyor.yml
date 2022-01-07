@@ -2,9 +2,8 @@
 image: Ubuntu
 build: off
 
-# Test against the latest version of this Node.js version
 environment:
-  nodejs_version: '16'
+  CODECOV_TOKEN: 'd4e6168e-9428-4311-a38f-957f8b883a1f'
 
 # Install scripts. (runs after repo cloning)
 install:
