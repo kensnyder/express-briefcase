@@ -1,8 +1,9 @@
 # 💼 express-briefcase
 
-[![Build Status](https://travis-ci.com/kensnyder/express-briefcase.svg?branch=master&v=1.0.0)](https://travis-ci.com/kensnyder/express-briefcase)
-[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=1.0.0)](https://codecov.io/gh/kensnyder/express-briefcase)
-[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=1.0.0)](https://opensource.org/licenses/ISC)
+[![NPM Link](https://img.shields.io/npm/v/express-briefcase?v=4.0.1)](https://npmjs.com/package/express-briefcase)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/kensnyder/express-briefcase?branch=master&svg=true&v=4.0.1)](https://ci.appveyor.com/project/kensnyder/express-briefcase/branch/master)
+[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=4.0.1)](https://codecov.io/gh/kensnyder/express-briefcase)
+[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=4.0.1)](https://opensource.org/licenses/ISC)
 
 Include metadata in Express.js response json such as errors, warnings and pagination
 
@@ -26,13 +27,15 @@ Adding custom metadata:
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-app.use(briefcase(shell => {
+app.use(
+  briefcase(shell => {
     shell.requestReferenceId = uuid.v4();
     if (shell.statusClass === '5xx') {
-        shell.apology = 'Sorry about that!';
-    }    
+      shell.apology = 'Sorry about that!';
+    }
     return shell;
-}));
+  })
+);
 ```
 
 Accessing the res object:
@@ -41,11 +44,14 @@ Accessing the res object:
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-app.use(briefcase(function(shell) {
-    // inside your customizer function, "this" is express's "res" object
+app.use(
+  briefcase(function (shell) {
+    // Inside your customizer function, "this" is express's "res" object
+    // Note that we must use the "function" keyword, not an arrow function
     shell.statusMessage = this.statusMessage;
     return shell;
-}));
+  })
+);
 ```
 
 ### Using the new res methods
@@ -61,8 +67,8 @@ app.use(briefcase(function(shell) {
 
 ```js
 app.get('/user/:id', async (req, res) => {
-    const user = await getUser(req.params.id);
-    res.decoratedJson(user);
+  const user = await getUser(req.params.id);
+  res.decoratedJson(user);
 });
 ```
 
@@ -87,19 +93,19 @@ Resulting response JSON
 }
 ```
 
-------------------------
+---
 
 #### Using `res.error()`
 
 ```js
 app.get('/user/:id', async (req, res) => {
-    const user = await getUser(req.params.id);
-    if (user === null) {
-       // Note: error can be a string or instance of Error
-       res.error('User not found');
-       res.status(404);
-    }
-    res.decoratedJson(user);
+  const user = await getUser(req.params.id);
+  if (user === null) {
+    // Note: error can be a string or instance of Error
+    res.error('User not found');
+    res.status(404);
+  }
+  res.decoratedJson(user);
 });
 ```
 
@@ -120,24 +126,24 @@ Resulting response JSON
 }
 ```
 
----------------------------
+---
 
 #### Using `res.devError()`
 
 Same as [res.error()](using-res-error) except that the error string will
 only be added if `process.env.NODE_ENV === 'development'`.
 
------------------------
+---
 
 #### Using `res.warn()`
 
 ```js
 app.get('/user/:id', async (req, res) => {
-    if (req.query.role) {
-       res.warn('Passing role to /user/:id is deprecated.');
-    }
-    const user = await getUser(req.params.id);
-    res.decoratedJson(user);
+  if (req.query.role) {
+    res.warn('Passing role to /user/:id is deprecated.');
+  }
+  const user = await getUser(req.params.id);
+  res.decoratedJson(user);
 });
 ```
 
@@ -162,15 +168,15 @@ Resulting response JSON
 }
 ```
 
-----------------------
+---
 
 #### Using `res.new()`
 
 ```js
 app.post('/user', async (req, res) => {
-    const { newId } = await createUser(req.body);
-    res.new({ id: newId, url: `/users/${newId}` });
-    res.decoratedJson();
+  const { newId } = await createUser(req.body);
+  res.new({ id: newId, url: `/users/${newId}` });
+  res.decoratedJson();
 });
 ```
 
@@ -194,19 +200,19 @@ Resulting response JSON
 }
 ```
 
-------------------------
+---
 
 #### Using `res.total()`
 
 ```js
 app.get('/users/search', async (req, res) => {
-   const { list, total } = await getUsers({ 
-       name: req.query.name,
-       page: req.query.page,
-       limit: 25,
-   });
-   res.total({ total, page: req.query.page, perPage: 25 });
-   res.decoratedJson(user);
+  const { list, total } = await getUsers({
+    name: req.query.name,
+    page: req.query.page,
+    limit: 25,
+  });
+  res.total({ total, page: req.query.page, perPage: 25 });
+  res.decoratedJson(user);
 });
 ```
 
@@ -260,4 +266,3 @@ incorporated.
 ## License
 
 Open Source under the [ISC License](https://opensource.org/licenses/ISC).
-

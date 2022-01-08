@@ -1,15 +1,30 @@
 {
   "name": "express-briefcase",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Include metadata in Express.js response json such as errors, warnings and pagination",
   "main": "index.js",
   "scripts": {
     "test": "npx jest",
-    "coverage": "npx jest --coverage"
+    "coverage": "npx jest --coverage",
+    "generate-types": "sh ./scripts/generate-types.sh"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kensnyder/express-briefcase.git"
+  },
+  "keywords": [
+    "express",
+    "express.js",
+    "metadata",
+    "response",
+    "pagination"
+  ],
+  "author": "kendsnyder@gmail.com",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kensnyder/express-briefcase/issues"
+  },
+  "homepage": "https://github.com/kensnyder/express-briefcase#readme",
   "dependencies": {
     "express": "4.x"
   },

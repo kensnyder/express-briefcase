@@ -1,3 +1,12 @@
+/**
+ * Calculate pagination metadata based on current request
+ * For GET/HEAD it also calls res.links({ prev, next }) to add a Link http header
+ * @param {Number} total  The total number of records if a limit were not applied
+ * @param {Number} perPage  The number of items per page (falls back to req.query.limit then req.body.limit then 10)
+ * @param {Number} page  The current page number (falls back to req.query.page then req.body.page then 1)
+ * @returns {Response}
+ * @chainable
+ */
 function total({ total, perPage = undefined, page = undefined }) {
   if (perPage === undefined) {
     perPage = parseInt(this.req.query.limit || this.req.body.limit) || 10;
