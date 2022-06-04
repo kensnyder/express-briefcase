@@ -1,9 +1,9 @@
 # 💼 express-briefcase
 
-[![NPM Link](https://img.shields.io/npm/v/express-briefcase?v=4.0.1)](https://npmjs.com/package/express-briefcase)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/kensnyder/express-briefcase?branch=master&svg=true&v=4.0.1)](https://ci.appveyor.com/project/kensnyder/express-briefcase/branch/master)
-[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=4.0.1)](https://codecov.io/gh/kensnyder/express-briefcase)
-[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=4.0.1)](https://opensource.org/licenses/ISC)
+[![NPM Link](https://img.shields.io/npm/v/express-briefcase?v=4.0.2)](https://npmjs.com/package/express-briefcase)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/kensnyder/express-briefcase?branch=master&svg=true&v=4.0.2)](https://ci.appveyor.com/project/kensnyder/express-briefcase/branch/master)
+[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=4.0.2)](https://codecov.io/gh/kensnyder/express-briefcase)
+[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=4.0.2)](https://opensource.org/licenses/ISC)
 
 Include metadata in Express.js response json such as errors, warnings and pagination
 
