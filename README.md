@@ -1,9 +1,9 @@
 # 💼 express-briefcase
 
-[![NPM Link](https://img.shields.io/npm/v/express-briefcase?v=4.0.1)](https://npmjs.com/package/express-briefcase)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/kensnyder/express-briefcase?branch=master&svg=true&v=4.0.1)](https://ci.appveyor.com/project/kensnyder/express-briefcase/branch/master)
-[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=4.0.1)](https://codecov.io/gh/kensnyder/express-briefcase)
-[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=4.0.1)](https://opensource.org/licenses/ISC)
+[![NPM Link](https://img.shields.io/npm/v/express-briefcase?v=4.0.2)](https://npmjs.com/package/express-briefcase)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/kensnyder/express-briefcase?branch=master&svg=true&v=4.1.0)](https://ci.appveyor.com/project/kensnyder/express-briefcase/branch/master)
+[![Code Coverage](https://codecov.io/gh/kensnyder/express-briefcase/branch/master/graph/badge.svg?v=4.1.0)](https://codecov.io/gh/kensnyder/express-briefcase)
+[![ISC License](https://img.shields.io/npm/l/express-briefcase.svg?v=4.1.0)](https://opensource.org/licenses/ISC)
 
 Include metadata in Express.js response json such as errors, warnings and pagination
 
@@ -17,6 +17,7 @@ Using default behavior:
 
 ```js
 const express = require('express');
+const briefcase = require('express-briefcase');
 const app = express();
 app.use(briefcase());
 ```
@@ -25,6 +26,7 @@ Adding custom metadata:
 
 ```js
 const express = require('express');
+const briefcase = require('express-briefcase');
 const uuid = require('uuid');
 const app = express();
 app.use(
@@ -42,26 +44,29 @@ Accessing the res object:
 
 ```js
 const express = require('express');
+const briefcase = require('express-briefcase');
 const uuid = require('uuid');
 const app = express();
 app.use(
-  briefcase(function (shell) {
-    // Inside your customizer function, "this" is express's "res" object
-    // Note that we must use the "function" keyword, not an arrow function
-    shell.statusMessage = this.statusMessage;
-    return shell;
+  briefcase((shell, req, res) => {
+    // customizer function also receives req and res
+    return {
+      statusMessage: req.statusMessage,
+      contentType: res.getHeader('content-type'),
+      ...shell,
+    };
   })
 );
 ```
 
 ### Using the new res methods
 
-1. [res.decoratedJson()](using-res-decoratedjson)
-1. [res.error()](using-res-error)
-1. [res.devError()](using-res-deverror)
-1. [res.warn()](using-res-warn)
-1. [res.new()](using-res-new)
-1. [res.total()](using-res-total)
+1. [res.decoratedJson()](#using-res-decoratedjson)
+1. [res.error()](#using-res-error)
+1. [res.devError()](#using-res-deverror)
+1. [res.warn()](#using-res-warn)
+1. [res.new()](#using-res-new)
+1. [res.total()](#using-res-total)
 
 #### Using `res.decoratedJson()`
 

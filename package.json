@@ -1,6 +1,6 @@
 {
   "name": "express-briefcase",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Include metadata in Express.js response json such as errors, warnings and pagination",
   "main": "index.js",
   "scripts": {

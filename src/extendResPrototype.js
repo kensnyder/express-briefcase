@@ -1,4 +1,7 @@
-const decoratedJson = require('./decoratedJson/decoratedJson.js');
+const {
+  decoratedJson,
+  headerizedJson,
+} = require('./decoratedJson/decoratedJson.js');
 const error = require('./error/error.js');
 const devError = require('./devError/devError.js');
 const warn = require('./warn/warn.js');
@@ -10,6 +13,7 @@ const {
 
 function extendResPrototype() {
   resPrototype.decoratedJson = decoratedJson;
+  resPrototype.headerizedJson = headerizedJson;
   resPrototype.error = error;
   resPrototype.devError = devError;
   resPrototype.warn = warn;

@@ -1,4 +1,4 @@
-const decoratedJson = require('./decoratedJson.js');
+const { decoratedJson, decoratedHeaders } = require('./decoratedJson.js');
 
 describe('res.decoratedJson()', () => {
   let res, json;
@@ -57,10 +57,40 @@ describe('res.decoratedJson()', () => {
     expect(json.mock.calls[0][0].date).toBe(undefined);
   });
   it('should handle a customizer that changes by value', () => {
-    res.locals._customizer = function (shell) {
+    res.locals._customizer = function () {
       return { custom: 'yep' };
     };
-    res.decoratedJson({ data: 123 });
+    res.decoratedJson({ ignore: 'me' });
     expect(json.mock.calls[0][0]).toEqual({ custom: 'yep' });
+  });
+});
+
+describe('res.decoratedHeaders()', () => {
+  let res, headers;
+  beforeEach(() => {
+    headers = {};
+    res = {
+      statusCode: 200,
+      locals: {
+        _startedAt: new Date() - 400,
+        _errors: [],
+        _warnings: ['Be nice'],
+        _new: { id: 1 },
+        _pagination: {},
+      },
+      decoratedHeaders,
+      header(name, value) {
+        headers[name] = value;
+        return res;
+      },
+    };
+  });
+  it('should properly setHeaders', () => {
+    expect(headers).toEqual({
+      'API-Started-At': String(res.locals._startedAt),
+      'API-Errors': '',
+      'API-Warnings': 'Be nice',
+      'API-New-Id': '1',
+    });
   });
 });

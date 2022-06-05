@@ -17,6 +17,7 @@ function briefcase(customizer = null) {
    */
   return function (req, res, next) {
     // note the time we started
+    res.locals.hasBriefcase = true;
     res.locals._startedAt = new Date();
     // setup empty fields
     res.locals._errors = [];
