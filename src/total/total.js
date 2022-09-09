@@ -9,10 +9,10 @@
  */
 function total({ total, perPage = undefined, page = undefined }) {
   if (perPage === undefined) {
-    perPage = parseInt(this.req.query.limit || this.req.body.limit) || 10;
+    perPage = _guessLimit(this.req);
   }
   if (page === undefined) {
-    page = parseInt(this.req.query.page || this.req.body.page) || 1;
+    page = _guessPage(this.req);
   }
   const numPages = Math.ceil(total / perPage);
   const hasNextPage = page < numPages;
@@ -32,6 +32,16 @@ function total({ total, perPage = undefined, page = undefined }) {
     this.links({ prev, next });
   }
   return this;
+}
+
+function _guessLimit(req) {
+  const limit = req.payload?.limit || req.query.limit || req.body.limit;
+  return parseInt(limit) || 10;
+}
+
+function _guessPage(req) {
+  const page = req.payload?.page || req.query.page || req.body.page;
+  return parseInt(page) || 1;
 }
 
 function _buildPageLink(req, forPage) {
